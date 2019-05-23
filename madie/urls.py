@@ -22,5 +22,6 @@ from boards import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.첫장, name='홈'),
+    path('', views.게시판, name='게시판'),
+    path('게시판/<id>/', views.게시판_주제, name='주제')
 ]

@@ -1,0 +1,14 @@
+{% extends '게시판기본.html' %}
+
+{% block 타이틀 %}
+    {{뷰결과.이름}} - {{ block.super }}
+{% endblock %}
+
+{% block 이정표 %}
+  <li class="breadcrumb-item"><a href="{% url '게시판' %}">게시판</a></li>
+  <li class="breadcrumb-item active">{{뷰결과.이름}}</li>
+{% endblock %}
+
+{% block 페이지내용 %}
+
+{% endblock %}

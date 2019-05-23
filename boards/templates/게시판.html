@@ -1,0 +1,30 @@
+{% extends '게시판기본.html' %}
+
+{% block 이정표 %}
+<li class="breadcrumb-item active">게시판</li>
+{% endblock %}
+
+{% block 페이지내용 %}
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+    {% for 컬럼 in 뷰결과.헤더 %}
+      <th class='align-middle'>{{ 컬럼 }}</th>
+    {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for 게시판 in 뷰결과.게시판들 %}
+      <tr>
+        <td>
+          <a href="{% url '주제' 게시판.pk %}">{{게시판.이름}}</a>
+          <small class='text-muted d-block'>{{게시판.설명}}</small>
+        </td>
+        <td class="align-middle">0</td>
+        <td class="align-middle">0</td>
+        <td></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

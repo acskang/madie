@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block 타이틀 %}
+            게시판
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a href="{% url '게시판' %}" class="navbar-brand">아하딩 게시판</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <ol class="breadcrumb my-4">
+            {% block 이정표 %}
+            {% endblock %}
+        </ol>
+        {% block 페이지내용 %}
+        {% endblock %}
+    </div>
+
+  </body>
+</html>
