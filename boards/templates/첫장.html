@@ -15,16 +15,15 @@
             <li class="breadcrumb-item active">게시판</li>
         </ol>
     <table class="table">
-      <thead class="thead-inverse">
+      <thead class="table-dark">
         <tr>
-          <th>Board</th>
-          <th>Posts</th>
-          <th>Topics</th>
-          <th>Last Post</th>
+        {% for 컬럼 in 뷰결과.헤더 %}
+          <th class='align-middle'>{{ 컬럼 }}</th>
+        {% endfor %}
         </tr>
       </thead>
       <tbody>
-        {% for 판 in 결과 %}
+        {% for 판 in 뷰결과.판들 %}
           <tr>
             <td>
               {{ 판.게시판명 }}

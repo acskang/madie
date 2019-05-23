@@ -16,6 +16,9 @@ class 주제텝(models.Model):
     게시판 = models.ForeignKey(게시판텝, related_name='주제들', on_delete=models.CASCADE)
     주최자 = models.ForeignKey(회원, related_name='주제들', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.주제
+
 
 class 게시물텝(models.Model):
     게시글 = models.TextField(max_length=4000)
@@ -25,3 +28,12 @@ class 게시물텝(models.Model):
     생성자 = models.ForeignKey(회원, related_name='게시물들', on_delete=models.CASCADE)
     변경자 = models.ForeignKey(회원, null=True, related_name='+', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.게시글
+
+class 게시판테이블헤드(models.Model):
+    순서 = models.IntegerField(null=True)
+    헤더 = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.헤더
