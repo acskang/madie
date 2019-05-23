@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+  <body>
+    <h1>게시판</h1>
+    
+    <div class="container">
+        <ol class="breadcrumb my-4">
+            <li class="breadcrumb-item active">게시판</li>
+        </ol>
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Board</th>
+          <th>Posts</th>
+          <th>Topics</th>
+          <th>Last Post</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for 판 in 결과 %}
+          <tr>
+            <td>
+              {{ 판.게시판명 }}
+              <small class='text-muted d-block'>{{ 판.게시판설명 }}</small>
+            </td>
+            <td class="align-middle">0</td>
+            <td class="align-middle">0</td>
+            <td></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+
+  </body>
+</html>
