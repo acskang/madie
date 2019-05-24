@@ -1,0 +1,20 @@
+{% extends '게시판기본.html' %}
+{% load widget_tweaks %}
+
+{% block 타이틀 %}
+    새글
+{% endblock %}
+
+{% block 이정표 %}
+  <li class="breadcrumb-item"><a href="{% url '게시판' %}">게시판</a></li>
+  <li class="breadcrumb-item"><a href="{% url '주제' 게시판.pk %}">{{게시판.이름}}</a></li>
+  <li class="breadcrumb-item active">새로운 주제</li>
+{% endblock %}
+
+{% block 페이지내용 %}
+  <form method="post">
+    {% csrf_token %}
+    {% include 'includes/공통폼.html' %}
+    <button type="submit" class="btn btn-success">아이디어 오픈</button>
+  </form>
+{% endblock %}

@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-
 from boards import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('가입/', accounts_views.signup, name='가입'),
     path('', views.게시판, name='게시판'),
-    path('게시판/<id>/', views.게시판_주제, name='주제')
+    path('게시판/<id>/', views.주제, name='주제'),
+    path('게시판/<id>/새글/', views.새글, name='새글'),
 ]

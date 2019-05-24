@@ -1,14 +1,33 @@
 {% extends '게시판기본.html' %}
 
 {% block 타이틀 %}
-    {{뷰결과.이름}} - {{ block.super }}
+    {{뷰결과.게시판.이름}} - {{ block.super }}
 {% endblock %}
 
 {% block 이정표 %}
   <li class="breadcrumb-item"><a href="{% url '게시판' %}">게시판</a></li>
-  <li class="breadcrumb-item active">{{뷰결과.이름}}</li>
+  <li class="breadcrumb-item active">{{뷰결과.게시판.이름}}</li>
 {% endblock %}
 
 {% block 페이지내용 %}
-
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        {% for 컬럼 in 뷰결과.헤더 %}
+      <th class='align-middle'>{{ 컬럼 }}</th>
+    {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for topic in 뷰결과.주제 %}
+        <tr>
+          <td>{{ topic.주제 }}</td>
+          <td>{{ topic.주최자.username }}</td>
+          <td>0</td>
+          <td>0</td>
+          <td>{{ topic.발행일 }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
