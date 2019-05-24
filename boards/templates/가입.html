@@ -1,0 +1,25 @@
+{% extends '계정기본.html' %}
+
+{% block 계정처리 %}
+<div class="row justify-content-center">
+   <div class="col-lg-8 col-md-10 col-sm-12">
+
+   <div class="card">
+   <div class="card-body">
+    <h3 class="card-title">회원가입</h3>                   
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% include 'includes/공통폼.html' %}
+        <button class="btn btn-primary" type="submit">
+            아이디생성
+        </button>
+    </form>
+    </div>
+    <div class="card-footer text-muted text-center">
+        회원인가요?<a href="{% url '로그인' %}">  로그인하러 가기</a>
+    </div>
+    </div>
+
+    </div> 
+</div>
+{% endblock %}

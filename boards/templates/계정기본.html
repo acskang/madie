@@ -1,0 +1,16 @@
+{% extends '게시판기본.html' %}
+{% load static %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <h1 class="text-center logo my-4">
+      <a href="{% url '게시판' %}">아름다운한글코딩</a>
+    </h1>
+    {% block 계정처리 %}
+    {% endblock %}
+  </div>
+{% endblock body %}
