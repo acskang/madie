@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import 주제텝
+from .models import 주제텝, 글텝
 
 class 새글폼(forms.ModelForm):
     글 = forms.CharField(
@@ -13,3 +13,9 @@ class 새글폼(forms.ModelForm):
     class Meta:
         model = 주제텝
         fields = ['주제', '글']
+
+
+class 댓글폼(forms.ModelForm):
+    class Meta:
+        model = 글텝
+        fields = ['글',]

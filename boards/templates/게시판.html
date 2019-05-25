@@ -8,21 +8,35 @@
 <table class="table">
   <thead class="table-dark">
     <tr>
-    {% for 컬럼 in 뷰결과.헤더 %}
+    {% for 컬럼 in 헤더 %}
       <th class='align-middle'>{{ 컬럼 }}</th>
     {% endfor %}
     </tr>
   </thead>
   <tbody>
-    {% for 게시판 in 뷰결과.게시판들 %}
+    {% for 게시판 in 게시판들 %}
       <tr>
         <td>
           <a href="{% url '주제' 게시판.pk %}">{{게시판.이름}}</a>
           <small class='text-muted d-block'>{{게시판.설명}}</small>
         </td>
-        <td class="align-middle">0</td>
-        <td class="align-middle">0</td>
-        <td></td>
+        <td class="align-middle">{{ 게시판.게시된글수 }}</td>
+        <td class="align-middle">{{ 게시판.주제들.count }}</td>
+        <td>
+          {% with 글=게시판.최근작성글 %}
+          {% if 글 %}
+            <small>
+              <a href="{% url '글조회' 게시판.pk 글.주제.pk %}">
+                작성자:{{ 글.작성자.username }}, 작성일:{{ 글.작성일 }}
+              </a>
+            </small>
+          {% else %}
+            <small class="text-muted">
+              <em>게시물이 없습니다.</em>
+            </small>
+          {% endif %}
+          {% endwith %}
+        </td>
       </tr>
     {% endfor %}
   </tbody>

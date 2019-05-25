@@ -26,13 +26,15 @@ uid_token = r'(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('로그인/', auth_views.LoginView.as_view(template_name='로그인.html'), name='로그인'),
-    path('로그아웃/', auth_views.LogoutView.as_view(), name='로그아웃'),
-    path('가입/', accounts_views.가입, name='가입'),
     path('', views.게시판, name='게시판'),
     path('게시판/<id>/', views.주제, name='주제'),
-    path('게시판/<id>/새글/', views.새글, name='새글'),
+    path('게시판/<게시판_id>/새글/', views.새글, name='새글'),
+    path('게시판/<게시판_id>/주제/<주제_id>/', views.글조회, name='글조회'),
+    path('게시판/<게시판_id>/주제/<주제_id>/댓글/', views.댓글, name='댓글'),
 
+    path('가입/', accounts_views.가입, name='가입'),
+    path('로그인/', auth_views.LoginView.as_view(template_name='로그인.html'), name='로그인'),
+    path('로그아웃/', auth_views.LogoutView.as_view(), name='로그아웃'),
     path('reset/', auth_views.PasswordResetView.as_view(
         template_name='password_reset.html',
         email_template_name='password_reset_email.html',
