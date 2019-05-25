@@ -1,5 +1,4 @@
 *.pyc
 *~
 __pychche__
-db.sqlite3
 .DS_store
