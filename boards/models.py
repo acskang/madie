@@ -33,8 +33,8 @@ class 글텝(models.Model):
     주제 = models.ForeignKey(주제텝, related_name='글들', on_delete=models.CASCADE)
     작성자 = models.ForeignKey(회원, related_name='글들', on_delete=models.CASCADE)
     작성일 = models.DateTimeField(auto_now_add=True)
-    댓글자 = models.ForeignKey(회원, null=True, related_name='+', on_delete=models.CASCADE)
-    댓글일 = models.DateTimeField(null=True)
+    수정자 = models.ForeignKey(회원, null=True, related_name='+', on_delete=models.CASCADE)
+    수정일 = models.DateTimeField(null=True)
 
     def __str__(self):
         머릿말 = Truncator(self.글)

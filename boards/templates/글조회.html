@@ -40,7 +40,7 @@
         {{ 게시물.글 }}
         {% if 게시물.작성자 == user %}
           <div class="mt-3">
-            <a href="#" class="btn btn-primary btn-sm" role="button">Edit</a>
+            <a href="{% url '글수정' 게시물.주제.게시판.pk 게시물.주제.pk 게시물.pk %}" class="btn btn-primary btn-sm" role="button">수정</a>
           </div>
         {% endif %}
       </div>
