@@ -31,12 +31,14 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'widget_tweaks',
     'boards',
     'accounts',
@@ -125,7 +127,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-LOGOUT_REDIRECT_URL = '게시판'
-LOGIN_REDIRECT_URL = '게시판'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+LOGIN_REDIRECT_URL = '게시판목록'
 LOGIN_URL = '로그인'
+LOGOUT_REDIRECT_URL = '게시판목록'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

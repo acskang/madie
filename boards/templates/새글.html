@@ -6,8 +6,8 @@
 {% endblock %}
 
 {% block 이정표 %}
-  <li class="breadcrumb-item"><a href="{% url '게시판' %}">게시판</a></li>
-  <li class="breadcrumb-item"><a href="{% url '주제' 게시판.pk %}">{{게시판.이름}}</a></li>
+  <li class="breadcrumb-item"><a href="{% url '게시판목록' %}">게시판</a></li>
+  <li class="breadcrumb-item"><a href="{% url '주제목록' 게시판.pk %}">{{게시판.이름}}</a></li>
   <li class="breadcrumb-item active">새로운 주제</li>
 {% endblock %}
 

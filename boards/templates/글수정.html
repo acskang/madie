@@ -4,10 +4,21 @@
     게수물경신
 {% endblock %}
 
+{% block stylesheet %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+{% endblock %}
+
+{% block javascript %}
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <script>
+    var simplemde = new SimpleMDE();
+  </script>
+{% endblock %}
+
 {% block 이정표 %}
-  <li class="breadcrumb-item"><a href="{% url '게시판' %}">게시판</a></li>
-  <li class="breadcrumb-item"><a href="{% url '주제' 글.주제.게시판.pk %}">{{ 글.주제.게시판.이름 }}</a></li>
-  <li class="breadcrumb-item"><a href="{% url '글조회' 글.주제.게시판.pk 글.주제.pk %}">글수정</a></li>
+  <li class="breadcrumb-item"><a href="{% url '게시판목록' %}">게시판</a></li>
+  <li class="breadcrumb-item"><a href="{% url '주제목록' 글.주제.게시판.pk %}">{{ 글.주제.게시판.이름 }}</a></li>
+  <li class="breadcrumb-item"><a href="{% url '댓글목록' 글.주제.게시판.pk 글.주제.pk %}">글수정</a></li>
 {% endblock %}
 
 {% block 페이지내용 %}
@@ -15,6 +26,6 @@
     {% csrf_token %}
     {% include 'includes/공통폼.html' %}
     <button type="submit" class="btn btn-success">수정글 게시</button>
-    <a href="{% url '글조회' 글.주제.게시판.pk 글.주제.pk %}" class="btn btn-outline-secondary" role="button">취소</a>
+    <a href="{% url '댓글목록' 글.주제.게시판.pk 글.주제.pk %}" class="btn btn-outline-secondary" role="button">취소</a>
   </form>
 {% endblock %}

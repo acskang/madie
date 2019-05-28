@@ -1,6 +1,18 @@
+import math
 from django.db import models
 from django.utils.text import Truncator
 from django.contrib.auth.models import User as 회원
+from django.utils.html import mark_safe
+from markdown import markdown
+
+
+class 그리드헤드텝(models.Model):
+    헤더 = models.CharField(max_length=30)
+    그리드 = models.CharField(max_length=30)
+    순서 = models.IntegerField(null=True)
+
+    def __str__(self):
+        return self.헤더
 
 
 class 게시판텝(models.Model):
@@ -27,6 +39,25 @@ class 주제텝(models.Model):
     def __str__(self):
         return self.주제
 
+    def get_page_count(self):
+        count = self.글들.count()
+        pages = count / 3
+        return math.ceil(pages)
+
+    def has_many_pages(self, count=None):
+        if count is None:
+            count = self.get_page_count()
+        return count > 3
+
+    def get_page_range(self):
+        count = self.get_page_count()
+        if self.has_many_pages(count):
+            return range(1, 5)
+        return range(1, count + 1)
+
+    def get_last_ten_posts(self):
+        return self.글들.order_by('-작성일')[:10]
+
 
 class 글텝(models.Model):
     글 = models.TextField(max_length=4000)
@@ -39,6 +70,9 @@ class 글텝(models.Model):
     def __str__(self):
         머릿말 = Truncator(self.글)
         return 머릿말.chars(30)
+
+    def get_message_as_markdown(self):
+        return mark_safe(markdown(self.글, safe_mode='escape'))
 
 
 class 게시판그리드헤드텝(models.Model):
@@ -55,3 +89,5 @@ class 주제그리드헤드텝(models.Model):
 
     def __str__(self):
         return self.헤더
+
+

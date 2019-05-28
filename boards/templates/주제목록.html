@@ -1,0 +1,51 @@
+{% extends '게시판기본.html' %}
+{% load humanize %}
+{% block 타이틀 %}
+    {{뷰결과.게시판.이름}} - {{ block.super }}
+{% endblock %}
+
+{% block 이정표 %}
+  <li class="breadcrumb-item"><a href="{% url '게시판목록' %}">게시판</a></li>
+  <li class="breadcrumb-item active">{{게시판.이름}}</li>
+{% endblock %}
+
+{% block 페이지내용 %}
+<div class="mb-4">
+  <a href="{% url '새글' 게시판.pk %}" class="btn btn-primary" role="button">새글</a>
+</div>
+<table class="table table-striped mb-4">
+  <thead class="thead-inverse">
+    <tr>
+      {% for 컬럼 in 헤더 %}
+        <th class='text-center'>{{ 컬럼.헤더 }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for 주제 in 게시판들 %}
+      {% url '댓글목록' 게시판.pk 주제.pk as 주제_URL %}
+      <tr>
+        <td>
+          <p class="mb-0">
+            <a href="{{ 주제_URL }}">{{ 주제.주제 }}</a>
+          </p>
+          <small class="text-muted">
+            Pages:
+            {% for i in 주제.get_page_range %}
+              <a href="{{ 주제_URL }}?page={{ i }}">{{ i }}</a>
+            {% endfor %}
+            {% if 주제.has_many_pages %}
+            ... <a href="{{ 주제_URL }}?page={{ 주제.get_page_count }}">마지막페이지</a>
+            {% endif %}
+          </small>
+        </td>
+        <td>{{ 주제.게시자.username }}</td>
+        <td class='text-center'>{{ 주제.댓글수 }}</td>
+        <td class='text-center'>{{ 주제.조회수 }}</td>
+        <td>{{ 주제.게시일|naturaltime }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+  {% include 'includes/페이지관리.html' %}
+{% endblock %}
