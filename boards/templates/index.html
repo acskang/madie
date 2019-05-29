@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>IamMadie</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">아름다운한글코딩</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    {% if user.is_authenticated %}
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url '전체홈' %}">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="사용자메뉴" data-toggle="dropdown" aria-haspopup="true" area-expanded="false">{{ user.username }}</a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="사용자메뉴">
+              <a class="dropdown-item" href="{% url '내계정정보' %}">내계정</a>
+              <a class="dropdown-item" href="{% url 'password_change' %}">비밀번호변경</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url '로그아웃' %}">로그아웃</a>
+          </div>
+      </div>
+    {% else %}
+        <form class="form-inline ml-auto">
+          <a href="{% url '로그인' %}" class="btn btn-outline-secondary">로그인</a>
+          <a href="{% url '가입' %}" class="btn btn-primary ml-2">가입</a>
+        </form>
+    {% endif %}
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-primary py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">Trot Cha-Cha-Cha</h1>
+          <p class="lead mb-5 text-white-50">내일 걱정은 내일 모레, 오늘은 즐겁게 시작해 보아요!!!<br>
+          ~~ 다함께 찻 차차 찻 차차, 잊짜 잊짜~아 오~느~을 만은 미련을 버리자~~<br>
+          ~~ 울지 말고 그래 그렇게 ~~~~~ 다함께 차차차</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <h2>여기에서는 ~~</h2>
+        <hr>
+        <p>트로트를 좋와하는 사람들이 모여 커뮤니티를 활동을 할 수 있는 곳. 노래도 둗고, 부르고, 대화도 하고, 약 먹었는지 확인도 하고, 약속도 확인하고, 까먹은 물건도 찾아주고 등등</p>
+        <p>노래도 불러 유튜브에 올리고, 아름다운한글코딩 프로그램도 배우고 등등등 다양한 배움과 기회를 얻을 수 있는 곳</p>
+        <a class="btn btn-primary btn-lg" href="#">Call to Action &raquo;</a>
+      </div>
+      <div class="col-md-4 mb-5">
+        <h2>연락처</h2>
+        <hr>
+        <address>
+          <strong>아하딩팀</strong>
+          <br>산좋고 물맑은 어느곳에서
+          <br>경기도 광주시
+          <br>
+        </address>
+        <address>
+          <abbr title="Phone">P:</abbr>
+          (123) 456-7890
+          <br>
+          <abbr title="Email">E:</abbr>
+          <a href="mailto:#">acskang@gmail.com</a>
+        </address>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+          <div class="card-body">
+            <h4 class="card-title">트로트 차차차</h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+          <div class="card-body">
+            <h4 class="card-title"><a href="{% url '게시판목록' %}">글쓰기/겔러리</a></h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <img class="card-img-top" src="http://placehold.it/300x200" alt="">
+          <div class="card-body">
+            <h4 class="card-title"><a href="{% url '채팅' %}">AI 와 놀기</a></h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Find Out More!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '394ae0e3-14d1-447e-9290-cc62499d59f3', f: true }); done = true; } }; })();</script>
+
+</body>
+
+</html>
