@@ -26,11 +26,14 @@ SECRET_KEY = '47&0*ex52v=w4@vo06rby^9htknpnc=krf+d#5h@h$m0qrx$a+'
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', '.pythonanywhere.com']
-
+INTERNAL_IPS = ('0.0.0.0','127.0.0.1','localhost',)
 
 # Application definition
 
 INSTALLED_APPS = [
+    'material',
+    'material.admin',
+    'imagekit',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +46,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'boards',
     'accounts',
+    'trot',
+    'gallery',
 ]
 
 MIDDLEWARE = [
@@ -109,26 +114,40 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = 'ko-kr'
+TIME_ZONE = 'Asia/Seoul'
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+)
 
-LOGIN_REDIRECT_URL = '게시판목록'
-LOGIN_URL = '로그인'
-LOGOUT_REDIRECT_URL = '게시판목록'
+MEDIA_URL = '/static/img/'
+MEDIA_ROOT = BASE_DIR + MEDIA_URL
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 587
+
+LOGIN_REDIRECT_URL = '전체홈'
+LOGIN_URL = '로그인'
+LOGOUT_REDIRECT_URL = '전체홈'

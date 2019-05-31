@@ -1,0 +1,64 @@
+{% extends "gallery/겔러리기본.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'external/photoswipe/photoswipe.css' %}"> 
+    <link rel="stylesheet" href="{% static 'external/photoswipe/default-skin/default-skin.css' %}"> 
+{% endblock %}
+
+{% block 이정표 %}
+<li class="breadcrumb-item active">겔러리</li>
+<li class="breadcrumb-item active">똥곰</li>
+{% endblock %}
+
+{% block content %}
+
+    {% if album.is_visible %}
+        <article class="row">
+            <header class="col s12 m12 l10 offset-l1">
+                <h1>{{ album.title }}</h1>
+            </header>
+            <section class="col s12 m12 l10 offset-l1">
+                <p>{{ album.description }}</p>
+
+                <div class="container">
+                    <div class="row">
+                        {% for item in images %}
+                        <a class="col s12 m3" href="javascript:pswpInit({{ forloop.counter0 }});">
+                            <img src="{{ item.thumb.url }}" class="responsive-img dpg-album-image" alt="{{ item.alt }}" />
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </section>
+            <footer class="col s12 m12 l10 offset-l1">
+                Created on <time datetime="{{ album.created|date:'Y-m-d' }}">{{ album.created|date:"d M Y" }}</time>
+                <p>Tags: {{ album.tags }}</p>
+            </footer>
+        </article>
+
+        {% include 'gallery/photoswipe_dom.html' %}
+
+    {% else %}
+        <h3>This album is temporarily unavailable.</h3>
+    {% endif %}
+
+{% endblock %}
+
+{% block js %}
+<script>
+    // build the json album images collection 
+    window.djangoAlbumImages = [
+        {% for item in images %}
+            {
+                src: "{{ item.image.url }}",
+                w:  {{ item.width }},
+                h:  {{ item.height }}
+            },
+        {% endfor %}
+    ];
+</script>
+<script src="{% static 'external/photoswipe/photoswipe.min.js' %}"></script> 
+<script src="{% static 'external/photoswipe/photoswipe-ui-default.min.js' %}"></script>
+{% endblock %}

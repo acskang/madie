@@ -5,11 +5,14 @@ from django.urls import path, re_path, include
 
 from boards import views
 from accounts import views as accounts_views
+from trot import views as trot_views
+# from gallery import views as gallery_views
 
 
 uid_token = r'(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})'
 
 urlpatterns = [
+    path('갤러리/', include('gallery.urls')),
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='전체홈'),
     path('게시판/', include('boards.urls')),

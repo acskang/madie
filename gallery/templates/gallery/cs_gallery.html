@@ -1,0 +1,41 @@
+{% extends '게시판기본.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/gallery_site.css' %}">
+{% endblock %}
+
+{% block javascript %}
+<script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '394ae0e3-14d1-447e-9290-cc62499d59f3', f: true }); done = true; } }; })();</script>
+{% endblock %}
+{% block 이정표 %}
+<li class="breadcrumb-item active">갤러리</li>
+{% endblock %}
+
+{% block 페이지내용 %}
+<div class="container">
+<div class="row">
+{% for album in albums %}
+<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+  <div class="card">
+    <div class="embed-responsive embed-responsive-16by9">
+      <img class="card-img-top embed-responsive-item" src="{{ album.thumb.url }}" alt="{{ album.title }}">
+    </div>
+    <div class="card-block">
+        <h4 class="card-title">{{ album.title }}</h4>
+        <div class="card-text">
+            <p>{{ album.description|truncatechars:40 }}</p>
+        </div>
+    </div>
+    <div class="card-footer">
+        <span class="float-right"><a href="{% url 'album' album.slug %}">
+                      More Images</a></span>
+        <span><i class=""></i>" # "</span>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+</div>
+  {% include "includes/페이지관리.html" %}
+{% endblock %}
