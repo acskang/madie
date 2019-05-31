@@ -137,7 +137,7 @@ STATICFILES_FINDERS = (
 )
 
 MEDIA_URL = '/static/img/'
-MEDIA_ROOT = BASE_DIR + MEDIA_URL
+MEDIA_ROOT = BASE_DIR + '/static/img/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_USE_TLS = True
