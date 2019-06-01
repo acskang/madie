@@ -6,6 +6,7 @@ import uuid
 from django.db import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
+from django.urls import reverse
 
 class Album(models.Model):
     title = models.CharField(max_length=70)

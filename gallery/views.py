@@ -11,13 +11,13 @@ def gallery(request):
     list = Album.objects.filter(is_visible=True).order_by('-created')
     paginator = Paginator(list, 10)
 
-    page = request.GET.get('page')
-    try:
-        albums = paginator.page(page)
-    except PageNotAnInteger:
-        albums = paginator.page(1) # If page is not an integer, deliver first page.
-    except EmptyPage:
-        albums = paginator.page(paginator.num_pages) # If page is out of range (e.g.  9999), deliver last page of results.
+    # page = request.GET.get('page')
+    # try:
+    #     albums = paginator.page(page)
+    # except PageNotAnInteger:
+    #     albums = paginator.page(1) # If page is not an integer, deliver first page.
+    # except EmptyPage:
+    #     albums = paginator.page(paginator.num_pages) # If page is out of range (e.g.  9999), deliver last page of results.
 
     return render(request, 'gallery/cs_gallery.html', { 'albums': list })
 

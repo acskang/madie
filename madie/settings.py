@@ -136,8 +136,10 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 )
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR + '/media/'
+MEDIA_URL = STATIC_URL + 'media/'
+MEDIA_ROOT = BASE_DIR + MEDIA_URL
+
+print("한마디, MEDIA_ROOT", MEDIA_ROOT)
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_USE_TLS = True
