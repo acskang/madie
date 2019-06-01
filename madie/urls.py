@@ -2,12 +2,14 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from django.urls import path, re_path, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 from boards import views
 from accounts import views as accounts_views
 from trot import views as trot_views
 # from gallery import views as gallery_views
-
+admin.autodiscover()
 
 uid_token = r'(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})'
 
@@ -41,4 +43,4 @@ urlpatterns = [
         name='password_change'),
     path('settings/password/done/', auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'),
         name='password_change_done'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'django.template.context_processors.media',
             ],
         },
     },
@@ -136,8 +137,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 )
 
-MEDIA_URL = STATIC_URL + 'media/'
-MEDIA_ROOT = BASE_DIR + MEDIA_URL
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR + '/media/'
 
 print("한마디, MEDIA_ROOT", MEDIA_ROOT)
 

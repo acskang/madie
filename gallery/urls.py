@@ -11,4 +11,4 @@ urlpatterns = [
     path('', views.gallery, name='갤러리'),
     path('<slug>', views.AlbumDetail.as_view(), name='album'),
     path('favicon.ico', RedirectView.as_view(url='/static/icons/favicon.ico', permanent=True)),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
