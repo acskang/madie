@@ -16,7 +16,7 @@ uid_token = r'(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z
 urlpatterns = [
     path('갤러리/', include('gallery.urls')),
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='index.html'), name='전체홈'),
+    path('', TemplateView.as_view(template_name='home.html'), name='전체홈'),
     path('게시판/', include('boards.urls')),
     path('채팅/', TemplateView.as_view(template_name='채팅.html'), name='채팅'),
     
