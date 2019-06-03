@@ -32,26 +32,38 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">Trot-ChaChaCha</a>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><a href="{% url '비디오' %}">트롯 ChaChaCha</a></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+    {% if user.is_authenticated %}
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-          </li>
+
         </ul>
       </div>
+      <div class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="사용자메뉴" data-toggle="dropdown" aria-haspopup="true" area-expanded="false">{{ user.username }}</a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="사용자메뉴">
+              <a class="dropdown-item" href="{% url '내계정정보' %}">내계정</a>
+              <a class="dropdown-item" href="{% url 'password_change' %}">비밀번호변경</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url '로그아웃' %}">로그아웃</a>
+          </div>
+      </div>
+    {% else %}
+        <form class="form-inline ml-auto">
+          <a href="{% url '로그인' %}" class="btn btn-outline-secondary">로그인</a>
+          <a href="{% url '가입' %}" class="btn btn-primary ml-2">가입</a>
+        </form>
+    {% endif %}
+
     </div>
   </nav>
 
@@ -118,7 +130,7 @@
           <div class="mt-5">
             <i class="fas fa-4x fa-gem text-primary mb-4"></i>
             <h3 class="h4 mb-2">바이블(준비중)</h3>
-            <p class="text-muted mb-0">아무 생각없이 성경을 치고 싶은 사람들은 여기에 좀 쳐 주세요.</p>
+            <p class="text-muted mb-0">아무 생각없이 성경을 치고 싶은 사람들은 여기에 좀 쳐 주세요. vuejs를 이용해 편리하고 이쁘게 자신만의 인터넷 성경책을 만들 수 있습니다.</p>
           </div>
         </div>
       </div>
@@ -260,6 +272,10 @@
 
   <!-- Custom scripts for this template -->
   <script src="{% static 'js/creative.min.js' %}"></script>
+
+  <!-- Extra vendor scripts for live chat -->
+  <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '394ae0e3-14d1-447e-9290-cc62499d59f3', f: true }); done = true; } }; })();</script>
+
 
 </body>
 
