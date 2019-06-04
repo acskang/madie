@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'rest_framework',           # REST Framework
+    'rest_framework_swagger',   # REST framework Swagger
     # 'chatterbot.ext.django_chatterbot',
     'widget_tweaks',
     'boards',
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'trot',
     'gallery',
     'bible',
+    'api',
 ]
 
 MIDDLEWARE = [

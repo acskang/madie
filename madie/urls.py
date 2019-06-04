@@ -14,6 +14,7 @@ admin.autodiscover()
 uid_token = r'(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})'
 
 urlpatterns = [
+    path('api/', include('api.urls')),
     path('성경/', include('bible.urls')),
     path('갤러리/', include('gallery.urls')),
     path('admin/', admin.site.urls),
