@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 
+
 from bible.models import (
   성경책텝, 성경권텝, 성경장텝, 성경절텝, 성경글텝)
 from .serializers import (

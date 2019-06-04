@@ -153,3 +153,8 @@ EMAIL_PORT = 587
 LOGIN_REDIRECT_URL = '전체홈'
 LOGIN_URL = '로그인'
 LOGOUT_REDIRECT_URL = '전체홈'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication',],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticatedOrReadOnly',],
+}
