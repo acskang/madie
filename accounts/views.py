@@ -15,11 +15,11 @@ def 가입(request):
         if 폼.is_valid():
             user = 폼.save()
             auth_login(request, user)
-            return redirect('게시판')
+            return redirect('로그인')
     else:
         form = 가입폼()
 
-    return render(request, '가입.html', {'form':form})
+    return render(request, '가입.html', {'form':form })
 
 
 @method_decorator(login_required, name='dispatch')

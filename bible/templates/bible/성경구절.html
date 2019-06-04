@@ -1,0 +1,35 @@
+{% extends '게시판기본.html' %}
+
+{% block 타이틀 %}{{ 구절.first.장.권 }}{% endblock %}
+
+{% block 이정표 %}
+  <li class="breadcrumb-item"><a href="{%url '전체홈' %}">홈</a></li>
+  <li class="breadcrumb-item">성경</li>
+  <li class="breadcrumb-item">오늘 필적</li>
+{% endblock %}
+
+{% block 페이지내용 %}
+  <div class="container">
+  <div class="card">
+  <div class="card-header">
+    <p>{{구절.first.장.권}} / chapter {{구절.first.장}} / verses {{구절.first.번호}} ~ {{구절.last.번호}}</p>
+  </div>
+  <div class="card-body">
+    {% for 말씀 in 구절 %}
+      {% if forloop.first %}
+        &emsp;<sup>{{말씀.번호}}</sup>{{말씀.내용}}
+      {% elif 말씀.단락시작 == True %}
+        <br>&emsp;<sup>{{말씀.번호}}</sup>{{말씀.내용}}
+      {% else %}
+        <sup>{{말씀.번호}}</sup>{{말씀.내용}}
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="card-footer">
+    <div class="container">
+    {{구절.first.작성자}}, {{구절.first.작성일}}
+    </div>
+  </div>
+  </div>
+  </div>
+{% endblock%}
