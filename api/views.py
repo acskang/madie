@@ -7,6 +7,14 @@ from bible.models import (
 from .serializers import (
   성경책시리얼화, 성경권시리얼화, 성경장시리얼화, 성경절시리얼화, 성경글시리얼화)
 
+from trot.models import Article
+from .serializers import ArticleSerializer
+
+
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+
 
 class 성경책뷰(viewsets.ModelViewSet):
   queryset = 성경책텝.objects.all()
